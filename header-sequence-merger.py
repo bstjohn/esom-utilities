@@ -34,7 +34,7 @@ def getFileNamesFromDirectory(directory):
 
 def writeDataToFile(fileData, fileName):
     try:
-        with open(fileName, 'w+') as outputFile:
+        with open(fileName, 'w') as outputFile:
             for data in fileData:
                 outputFile.write(data + '\n')
     except Exception as e:
