@@ -2,6 +2,11 @@ import argparse
 import os
 import sys
 
+def printExceptionAndExit(e):
+    print(type(e))
+    print(str(e))
+    sys.exit()
+
 def extractDataFromFile(header_file, data_file):
     with open(header_file) as headerFile:
         headers = headerFile.read().splitlines()
@@ -28,9 +33,12 @@ def getFileNamesFromDirectory(directory):
     return files
 
 def writeDataToFile(fileData, fileName):
-    with open(fileName, 'w+') as outputFile:
-        for data in fileData:
-            outputFile.write(data + '\n')
+    try:
+        with open(fileName, 'w+') as outputFile:
+            for data in fileData:
+                outputFile.write(data + '\n')
+    except Exception as e:
+        printExceptionAndExit(e)
 
     print('Created file ' + fileName + '.')
 
